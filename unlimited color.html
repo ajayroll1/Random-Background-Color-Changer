@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <h1>It will change screen color every second</h1>
+  <button id="Start">Start</button>
+  <button id="Stop">Stop</button>
+
+  <script>
+    // Generate a RANDOM COLOR USING RANDOM HEX VALUES
+    const randomColor = function () {
+      const hex = '0123456789ABCDEF';
+      let color = "#";
+      for (let i = 0; i < 6; i++) {
+        color += hex[Math.floor(Math.random() * 16)];
+      }
+      return color;
+    };
+
+    let colorInterval;
+
+    const startChangingColor = function () {
+      clearInterval(colorInterval); // Clear any existing interval
+      colorInterval = setInterval(changeColor, 1000);
+    };
+
+    const changeColor = function () {
+      document.body.style.backgroundColor = randomColor();
+    };
+
+    const stopChangingColor = function () {
+      clearInterval(colorInterval);
+    };
+
+    document.querySelector('#Start').addEventListener('click', startChangingColor);
+    document.querySelector('#Stop').addEventListener('click', stopChangingColor);
+  </script>
+</body>
+
+</html>
